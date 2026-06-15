@@ -1231,56 +1231,56 @@ const REMOVED_IDS = new Set([
  *   Never wipe and reseed the whole store.
  * - A schema version stamp prevents re-running migrations on every load.
  */
-const SCHEMA_VERSION = '5'; // bumped: added Casio E117D, GA-2100, BST-B300, MT-G, GBX-100, GAE-2100RC, GWR-B1000X; Hublot Square Bang, Fusion Skeleton
+const SCHEMA_VERSION = '6';
 
+/**
+ * getWatches()
+ *
+ * PERSISTENCE RULES — admin edits must survive forever:
+ *
+ * 1. If localStorage has watch data → return it AS-IS, no questions asked.
+ *    Admin prices, images, deletions are all preserved.
+ *
+ * 2. If localStorage is empty → seed once from DEFAULT_WATCHES.
+ *
+ * 3. Schema version is used ONLY to detect a genuinely fresh install
+ *    (no data yet). It never triggers a reseed when data already exists.
+ *
+ * WHY: Reseeding overwrites admin edits. We never reseed when data exists.
+ */
 function getWatches() {
   const stored = localStorage.getItem('chronos_watches');
 
   if (stored) {
     try {
-      let existing = JSON.parse(stored);
-
-      // --- Migration: run only once per schema version ---
-      const migratedVersion = localStorage.getItem('chronos_schema_v');
-      if (migratedVersion !== SCHEMA_VERSION) {
-
-        // 1. Remove any watches with stale IDs (old placeholders now replaced)
-        existing = existing.filter(w => !REMOVED_IDS.has(w.id));
-
-        // 2. Fix any remaining Unsplash image URLs to use local fallback
-        existing = existing.map(w => {
-          if (w.image && w.image.startsWith('https://images.unsplash')) {
-            return { ...w, image: 'assets/watches/watch-1.jpg', images: ['assets/watches/watch-1.jpg'] };
-          }
-          return w;
-        });
-
-        // 3. Add any brand-new DEFAULT_WATCHES entries not yet in storage
-        const existingIds = new Set(existing.map(w => w.id));
-        const toAdd = DEFAULT_WATCHES.filter(w => !existingIds.has(w.id));
-        if (toAdd.length > 0) existing = [...existing, ...toAdd];
-
-        // 4. Save migrated catalogue and stamp the version
-        localStorage.setItem('chronos_watches', JSON.stringify(existing));
-        localStorage.setItem('chronos_schema_v', SCHEMA_VERSION);
+      const parsed = JSON.parse(stored);
+      // Data exists and is valid — return it exactly, preserving all admin edits
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
       }
-
-      return JSON.parse(JSON.stringify(existing)); // always return a deep copy
     } catch(e) {
-      // Corrupted storage — reseed cleanly
-      localStorage.removeItem('chronos_watches');
+      // JSON corrupted — fall through to reseed
     }
   }
 
-  // First ever load — seed with defaults
-  localStorage.setItem('chronos_watches', JSON.stringify(DEFAULT_WATCHES));
+  // No data or corrupted — seed fresh from defaults
+  const fresh = JSON.parse(JSON.stringify(DEFAULT_WATCHES));
+  localStorage.setItem('chronos_watches', JSON.stringify(fresh));
   localStorage.setItem('chronos_schema_v', SCHEMA_VERSION);
-  return JSON.parse(JSON.stringify(DEFAULT_WATCHES));
+  return fresh;
 }
 
 function saveWatches(watches) {
-  // Admin panel calls this — persists changes permanently
+  // Admin calls this — writes permanently to localStorage
   localStorage.setItem('chronos_watches', JSON.stringify(watches));
+  
+  // Dispatch a custom event so all pages listening in this browser session update instantly
+  try {
+    const event = new CustomEvent('chronosWatchesUpdated', {
+      detail: { watches: watches }
+    });
+    window.dispatchEvent(event);
+  } catch(e) {}
 }
 
 function formatPrice(n) {

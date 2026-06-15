@@ -23,7 +23,6 @@ const SESSION_CART_KEY = (() => {
 /* ---- INIT ---- */
 document.addEventListener('DOMContentLoaded', () => {
   watches = getWatches();
-  // Load this session's cart — isolated per tab/session
   cart = JSON.parse(sessionStorage.getItem(SESSION_CART_KEY) || '[]');
   renderWatches(watches);
   updateCartUI();
@@ -35,6 +34,41 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initHamburger();
   initBrandPage();
+});
+
+// Live-sync: when admin saves in another tab or same window, refresh the store grid immediately
+window.addEventListener('storage', e => {
+  if (e.key === 'chronos_watches' && e.newValue) {
+    try {
+      watches = JSON.parse(e.newValue);
+      applyFilters(); // re-render with current filter/search state
+    } catch(err) {}
+  }
+});
+
+// Custom event listener: when admin saves in the same tab/window, update instantly
+window.addEventListener('chronosWatchesUpdated', e => {
+  if (e.detail && e.detail.watches) {
+    watches = e.detail.watches;
+    applyFilters(); // re-render with current filter/search state
+  }
+});
+
+// When page regains focus (user switches from admin tab back), refresh watches
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    // Page became visible — reload watches from localStorage to catch any admin changes
+    const stored = localStorage.getItem('chronos_watches');
+    if (stored) {
+      try {
+        const freshWatches = JSON.parse(stored);
+        if (JSON.stringify(watches) !== JSON.stringify(freshWatches)) {
+          watches = freshWatches;
+          applyFilters(); // re-render if data changed
+        }
+      } catch(err) {}
+    }
+  }
 });
 
 /* ---- NAVBAR SCROLL ---- */
@@ -184,8 +218,8 @@ function initSearch() {
 }
 
 function applyFilters() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
-  let list = getWatches(); // always fresh
+  const query = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
+  let list = getWatches(); // always read fresh from localStorage
   if (activeFilter !== 'all') {
     list = list.filter(w => w.brand.toLowerCase() === activeFilter);
   }
