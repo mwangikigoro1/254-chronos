@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>254 Chronos – Premium Watches & Timepieces</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Raleway:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="254 Chronos Logo" class="logo-img" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#brands">Brands</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="admin.html" class="nav-admin"><i class="fa fa-lock"></i> Admin</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="cart-btn" id="cartBtn">
+          <i class="fa fa-shopping-bag"></i>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-sub">Crafted for the 254</p>
+      <h1 class="hero-title">Time Honored.<br /><span>Kenya Inspired.</span></h1>
+      <p class="hero-tagline">Premium Watches & Timepieces — Precision in Every Tick.</p>
+      <div class="hero-buttons">
+        <a href="#collection" class="btn btn-gold">Shop Collection</a>
+        <a href="#brands" class="btn btn-outline">Our Brands</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <i class="fa fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- BRAND STRIP -->
+  <section class="brand-strip">
+    <div class="strip-inner">
+      <span>ROLEX</span>
+      <span>HUBLOT</span>
+      <span>PATEK PHILIPPE</span>
+      <span>RICHARD MILLE</span>
+      <span>CASIO</span>
+      <span>DIESEL</span>
+      <span>POEDAGAR</span>
+      <span>NAVIFORCE</span>
+      <span>CURREN</span>
+      <span>TISSOT</span>
+      <span>MICHAEL KORS</span>
+      <span>HUGO BOSS</span>
+      <span>ANNE KLEIN</span>
+      <span>CRRJU</span>
+      <span>KALBOR</span>
+      <span>HERYL</span>
+      <span>REBIRTH</span>
+      <span>HERMES</span>
+      <span>SUCCESS WAY</span>
+      <span>ROLEX</span>
+      <span>HUBLOT</span>
+      <span>PATEK PHILIPPE</span>
+      <span>RICHARD MILLE</span>
+      <span>CASIO</span>
+      <span>DIESEL</span>
+      <span>POEDAGAR</span>
+      <span>NAVIFORCE</span>
+      <span>CURREN</span>
+      <span>TISSOT</span>
+      <span>MICHAEL KORS</span>
+      <span>HUGO BOSS</span>
+      <span>ANNE KLEIN</span>
+      <span>CRRJU</span>
+      <span>KALBOR</span>
+      <span>HERYL</span>
+      <span>REBIRTH</span>
+      <span>HERMES</span>
+      <span>SUCCESS WAY</span>
+    </div>
+  </section>
+
+  <!-- FEATURED / FILTER -->
+  <section class="collection" id="collection">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-sub">Saa yako, hadhi yako</p>
+        <h2 class="section-title">Our Collection</h2>
+        <p class="section-desc">Every timepiece curated for the discerning Kenyan.</p>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="rolex">ROLEX</button>
+        <button class="filter-btn" data-filter="hublot">HUBLOT</button>
+        <button class="filter-btn" data-filter="patek philippe">PATEK PHILIPPE</button>
+        <button class="filter-btn" data-filter="richard mille">RICHARD MILLE</button>
+        <button class="filter-btn" data-filter="casio">CASIO</button>
+        <button class="filter-btn" data-filter="diesel">DIESEL</button>
+        <button class="filter-btn" data-filter="poedagar">POEDAGAR</button>
+        <button class="filter-btn" data-filter="naviforce">NAVIFORCE</button>
+        <button class="filter-btn" data-filter="curren">CURREN</button>
+        <button class="filter-btn" data-filter="tissot">TISSOT</button>
+        <button class="filter-btn" data-filter="michael kors">MICHAEL KORS</button>
+        <button class="filter-btn" data-filter="hugo boss">HUGO BOSS</button>
+        <button class="filter-btn" data-filter="anne klein">ANNE KLEIN</button>
+        <button class="filter-btn" data-filter="crrju">CRRJU</button>
+        <button class="filter-btn" data-filter="kalbor">KALBOR</button>
+        <button class="filter-btn" data-filter="heryl">HERYL</button>
+        <button class="filter-btn" data-filter="rebirth">REBIRTH</button>
+        <button class="filter-btn" data-filter="hermes">HERMÈS</button>
+        <button class="filter-btn" data-filter="success way">SUCCESS WAY</button>
+      </div>
+
+      <!-- Search -->
+      <div class="search-bar">
+        <i class="fa fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search watches by name or brand..." />
+      </div>
+
+      <!-- Watch Grid -->
+      <div class="watch-grid" id="watchGrid"></div>
+    </div>
+  </section>
+
+  <!-- BRANDS SECTION -->
+  <section class="brands-section" id="brands">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-sub">World Class Timepieces</p>
+        <h2 class="section-title">Brands We Carry</h2>
+      </div>
+      <div class="brands-grid">
+        <div class="brand-card" data-brand="Rolex"><div class="brand-icon">⌚</div><h3>ROLEX</h3><p>Swiss prestige since 1905</p></div>
+        <div class="brand-card" data-brand="Hublot"><div class="brand-icon">⌚</div><h3>HUBLOT</h3><p>The art of fusion</p></div>
+        <div class="brand-card" data-brand="Patek Philippe"><div class="brand-icon">⌚</div><h3>PATEK PHILIPPE</h3><p>You never actually own one</p></div>
+        <div class="brand-card" data-brand="Richard Mille"><div class="brand-icon">⌚</div><h3>RICHARD MILLE</h3><p>Racing machine on the wrist</p></div>
+        <div class="brand-card" data-brand="Casio"><div class="brand-icon">⌚</div><h3>CASIO</h3><p>Engineered for life</p></div>
+        <div class="brand-card" data-brand="Diesel"><div class="brand-icon">⌚</div><h3>DIESEL</h3><p>Bold & unapologetic</p></div>
+        <div class="brand-card" data-brand="Poedagar"><div class="brand-icon">⌚</div><h3>POEDAGAR</h3><p>Premium everyday luxury</p></div>
+        <div class="brand-card" data-brand="Naviforce"><div class="brand-icon">⌚</div><h3>NAVIFORCE</h3><p>Military precision style</p></div>
+        <div class="brand-card" data-brand="Curren"><div class="brand-icon">⌚</div><h3>CURREN</h3><p>Elegant & affordable</p></div>
+        <div class="brand-card" data-brand="Tissot"><div class="brand-icon">⌚</div><h3>TISSOT</h3><p>Swiss quality for all</p></div>
+        <div class="brand-card" data-brand="Michael Kors"><div class="brand-icon">⌚</div><h3>MICHAEL KORS</h3><p>Fashion-forward luxury</p></div>
+        <div class="brand-card" data-brand="Hugo Boss"><div class="brand-icon">⌚</div><h3>HUGO BOSS</h3><p>Sharp. Sophisticated.</p></div>
+        <div class="brand-card" data-brand="Anne Klein"><div class="brand-icon">⌚</div><h3>ANNE KLEIN</h3><p>Timeless feminine elegance</p></div>
+        <div class="brand-card" data-brand="CRRJU"><div class="brand-icon">⌚</div><h3>CRRJU</h3><p>Sleek minimalist design</p></div>
+        <div class="brand-card" data-brand="Kalbor"><div class="brand-icon">⌚</div><h3>KALBOR</h3><p>Affordable sport style</p></div>
+        <div class="brand-card" data-brand="Heryl"><div class="brand-icon">⌚</div><h3>HERYL</h3><p>Classic dress watches</p></div>
+        <div class="brand-card" data-brand="Rebirth"><div class="brand-icon">⌚</div><h3>REBIRTH</h3><p>Bold contemporary pieces</p></div>
+        <div class="brand-card" data-brand="Hermes"><div class="brand-icon">⌚</div><h3>HERMÈS</h3><p>Parisian luxury craftsmanship</p></div>
+        <div class="brand-card" data-brand="Success Way"><div class="brand-icon">⌚</div><h3>SUCCESS WAY</h3><p>Made for achievers</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+      <div class="about-image">
+        <div class="about-img-frame">
+          <div class="about-img-placeholder">
+            <i class="fa fa-clock"></i>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-sub">Our Story</p>
+        <h2 class="section-title">Your Moment.<br />Our Masterpiece.</h2>
+        <p>254 Chronos is a premium Kenyan watch retailer that blends precision engineering with cultural pride. We believe timekeeping is more than telling time — it is a statement of who you are.</p>
+        <p>From the workshop floors of Switzerland to the streets of Nairobi, we bring you timepieces that carry stories, craftsmanship, and identity.</p>
+        <div class="about-values">
+          <div class="value"><i class="fa fa-gem"></i><span>Precision</span></div>
+          <div class="value"><i class="fa fa-landmark"></i><span>Heritage</span></div>
+          <div class="value"><i class="fa fa-star"></i><span>Elegance</span></div>
+          <div class="value"><i class="fa fa-handshake"></i><span>Trust</span></div>
+        </div>
+        <a href="#collection" class="btn btn-gold">Explore Watches</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-sub">Get In Touch</p>
+        <h2 class="section-title">Visit Us</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fa fa-map-marker-alt"></i>
+            <div>
+              <h4>Location</h4>
+              <p>Nairobi CBD, Kenyatta Avenue<br />Nairobi, Kenya</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa fa-phone"></i>
+            <div>
+              <h4>Phone / WhatsApp</h4>
+              <p>+254 118 780 011</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fa fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p>254chronos@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="https://wa.me/254118780011" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <h3>Send a Message</h3>
+          <form id="contactForm">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Email Address" required />
+            <input type="text" placeholder="Subject" />
+            <textarea placeholder="Your message..." rows="5" required></textarea>
+            <button type="submit" class="btn btn-gold">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="254 Chronos" class="footer-logo" />
+        <p>Crafted for the 254 | Premium Watches & Timepieces</p>
+        <p class="footer-hashtags">#254Chronos #KenyanLuxury #TimeHonored #ChronosCraft</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#collection">Collection</a></li>
+          <li><a href="#brands">Brands</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-brands-list">
+        <h4>Brands</h4>
+        <ul>
+          <li>ROLEX</li><li>HUBLOT</li><li>PATEK PHILIPPE</li>
+          <li>RICHARD MILLE</li><li>CASIO</li><li>DIESEL</li>
+          <li>POEDAGAR</li><li>NAVIFORCE</li><li>CURREN</li>
+          <li>TISSOT</li><li>MICHAEL KORS</li><li>HUGO BOSS</li>
+          <li>ANNE KLEIN</li><li>CRRJU</li><li>KALBOR</li>
+          <li>HERYL</li><li>REBIRTH</li><li>HERMÈS</li>
+          <li>SUCCESS WAY</li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Get exclusive deals delivered to your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" />
+          <button type="submit" class="btn btn-gold">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 254 Chronos. All rights reserved. | Precision in Every Tick.</p>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="cart-close" id="cartClose"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">KSh 0</span>
+      </div>
+      <button class="btn btn-gold" id="checkoutBtn">Checkout via WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- BRAND PAGE OVERLAY -->
+  <div class="brand-page-overlay" id="brandPageOverlay">
+    <div class="brand-page" id="brandPage">
+      <div class="brand-page-header">
+        <button class="brand-back-btn" id="brandBackBtn">
+          <i class="fa fa-arrow-left"></i> Back
+        </button>
+        <div class="brand-page-title">
+          <span class="brand-page-sub">Collection</span>
+          <h2 class="brand-page-name" id="brandPageName"></h2>
+        </div>
+        <span class="brand-page-count" id="brandPageCount"></span>
+      </div>
+      <div class="brand-page-body">
+        <div class="watch-grid" id="brandPageGrid"></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="watch-modal" id="watchModal">
+    <button class="modal-close" id="modalClose"><i class="fa fa-times"></i></button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
