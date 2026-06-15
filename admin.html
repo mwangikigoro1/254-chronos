@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel – 254 Chronos</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Raleway:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="admin-body">
+
+  <!-- LOGIN GATE -->
+  <div class="login-gate" id="loginGate">
+    <div class="login-box">
+      <img src="assets/logo.png" alt="254 Chronos" class="login-logo" />
+      <h2>Admin Access</h2>
+      <p>Enter your credentials to manage the collection</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="loginUser" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="" autocomplete="new-password" required />
+        </div>
+        <p class="login-error" id="loginError"></p>
+        <button type="submit" class="btn btn-gold">Login</button>
+      </form>
+      <a href="index.html" class="back-link"><i class="fa fa-arrow-left"></i> Back to Store</a>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-panel" id="adminPanel" style="display:none;">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-logo">
+        <img src="assets/logo.png" alt="254 Chronos" />
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-link active" data-tab="dashboard"><i class="fa fa-chart-bar"></i> Dashboard</a>
+        <a href="#" class="sidebar-link" data-tab="watches"><i class="fa fa-clock"></i> Watches</a>
+        <a href="#" class="sidebar-link" data-tab="add"><i class="fa fa-plus-circle"></i> Add Watch</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="btn-logout" id="logoutBtn"><i class="fa fa-sign-out-alt"></i> Logout</button>
+        <a href="index.html" class="btn-view-store"><i class="fa fa-store"></i> View Store</a>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="admin-main">
+
+      <!-- Header -->
+      <header class="admin-header">
+        <h2 id="pageTitle">Dashboard</h2>
+        <span class="admin-user"><i class="fa fa-user-circle"></i> Admin</span>
+      </header>
+
+      <!-- DASHBOARD TAB -->
+      <div class="admin-tab" id="tab-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <i class="fa fa-clock"></i>
+            <div>
+              <h3 id="statTotal">0</h3>
+              <p>Total Watches</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <i class="fa fa-tags"></i>
+            <div>
+              <h3 id="statBrands">0</h3>
+              <p>Brands Listed</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <i class="fa fa-fire"></i>
+            <div>
+              <h3 id="statFeatured">0</h3>
+              <p>Featured Items</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <i class="fa fa-coins"></i>
+            <div>
+              <h3 id="statAvgPrice">KSh 0</h3>
+              <p>Avg. Price</p>
+            </div>
+          </div>
+        </div>
+        <div class="recent-section">
+          <h3>Recently Added</h3>
+          <div class="watch-grid admin-mini-grid" id="recentGrid"></div>
+        </div>
+      </div>
+
+      <!-- WATCHES TAB -->
+      <div class="admin-tab" id="tab-watches" style="display:none;">
+        <div class="tab-toolbar">
+          <input type="text" id="adminSearch" placeholder="Search watches..." class="admin-search" />
+          <select id="adminFilterBrand" class="admin-select">
+            <option value="all">All Brands</option>
+          </select>
+          <button class="btn btn-gold" onclick="showTab('add')"><i class="fa fa-plus"></i> Add New</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="adminTable">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Price (KSh)</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ADD / EDIT WATCH TAB -->
+      <div class="admin-tab" id="tab-add" style="display:none;">
+        <div class="form-card">
+          <h3 id="formTitle">Add New Watch</h3>
+          <form id="watchForm">
+            <input type="hidden" id="watchId" />
+            <div class="form-row">
+              <div class="form-group">
+                <label>Watch Name *</label>
+                <input type="text" id="wName" placeholder="e.g. Submariner Date" required />
+              </div>
+              <div class="form-group">
+                <label>Brand *</label>
+                <input type="text" id="wBrand" placeholder="e.g. Rolex" required list="brandSuggestions" />
+                <datalist id="brandSuggestions">
+                  <option value="Rolex"><option value="Hublot"><option value="Casio">
+                  <option value="Poedagar"><option value="Naviforce"><option value="Curren">
+                  <option value="Tissot"><option value="Michael Kors"><option value="Anne Klein">
+                  <option value="CRRJU"><option value="Kalbor"><option value="Heryl">
+                  <option value="Rebirth"><option value="Hermes"><option value="Success Way">
+                  <option value="Patek Philippe"><option value="Richard Mille">
+                  <option value="Diesel"><option value="Hugo Boss">
+                </datalist>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Model Number *</label>
+                <input type="text" id="wModel" placeholder="e.g. m126610ln-0001" required />
+              </div>
+              <div class="form-group">
+                <label>Price (KSh) *</label>
+                <input type="number" id="wPrice" placeholder="e.g. 1500000" required min="0" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Case Material</label>
+                <input type="text" id="wCase" placeholder="e.g. Oystersteel" />
+              </div>
+              <div class="form-group">
+                <label>Movement</label>
+                <input type="text" id="wMovement" placeholder="e.g. Calibre 3235 Automatic" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Water Resistance</label>
+                <input type="text" id="wWater" placeholder="e.g. 300m / 1000ft" />
+              </div>
+              <div class="form-group">
+                <label>Case Diameter</label>
+                <input type="text" id="wDiameter" placeholder="e.g. 41mm" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Strap / Bracelet</label>
+                <input type="text" id="wStrap" placeholder="e.g. Oyster bracelet" />
+              </div>
+              <div class="form-group">
+                <label>Gender</label>
+                <select id="wGender">
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                  <option value="Unisex">Unisex</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label>Description</label>
+              <textarea id="wDesc" rows="4" placeholder="Describe the watch — dial color, complication, heritage..."></textarea>
+            </div>
+
+            <!-- MULTI-IMAGE MANAGER -->
+            <div class="form-group full-width">
+              <label>Watch Images <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0;">(add as many as you like — first image is the cover)</span></label>
+
+              <!-- URL input row -->
+              <div class="img-url-row">
+                <input type="url" id="wImageUrl" placeholder="Paste image URL (https://...)" />
+                <button type="button" class="btn btn-gold" id="addUrlBtn"><i class="fa fa-plus"></i> Add URL</button>
+              </div>
+
+              <!-- File upload — multiple -->
+              <label class="file-upload-label">
+                <i class="fa fa-upload"></i> Upload Photos (select multiple)
+                <input type="file" id="wImageFile" accept="image/*" multiple style="display:none;" />
+              </label>
+              <small>You can upload multiple files at once. First image shown = cover on the store card. Click ⭐ on any thumbnail to make it the cover.</small>
+
+              <!-- Gallery grid -->
+              <div class="gallery-manager" id="imageGalleryGrid"></div>
+              <div class="gallery-placeholder" id="galleryPlaceholder">
+                <i class="fa fa-images"></i>
+                <span>No images added yet. Paste a URL or upload files above.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="wFeatured" /> Mark as Featured
+              </label>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-gold" id="submitBtn">Save Watch</button>
+              <button type="button" class="btn btn-outline" id="cancelBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
